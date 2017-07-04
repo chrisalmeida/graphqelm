@@ -1,7 +1,7 @@
 {
     "version": "1.0.0",
     "summary": "A simple Elm API for composing GraphQL queries and making requests.",
-    "repository": "https://github.com/chrisalmeida/graphqelm",
+    "repository": "https://github.com/chrisalmeida/graphqelm.git",
     "license": "BSD3",
     "source-directories": [
         "."
