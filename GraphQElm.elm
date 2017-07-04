@@ -5,7 +5,7 @@ import Json.Decode exposing (Decoder)
 import Http exposing (get, post, Request, emptyBody)
 
 
-{-| GraphQElm exposes a simple elm API for composing GraphQL queries and making requests to a GraphQL endpoint.
+{-| GraphQElm exposes a simple Elm API for composing GraphQL queries and making requests to a GraphQL endpoint.
 
 # Defining and Composing Queries
 @docs gql, concatQueries, nest
