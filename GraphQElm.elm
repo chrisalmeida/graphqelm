@@ -1,18 +1,31 @@
 module GraphQElm exposing (gql, concatQueries, nest, get, mutate, concatGQLUrl, Query)
 
+{-| GraphQElm exposes a simple Elm API for composing GraphQL queries and making requests to a GraphQL endpoint.
+
+# Defining and Composing Queries
+@docs Query, gql, concatQueries, nest
+
+# Making Requests
+@docs get, mutate, concatGQLUrl
+
+-}
+
 import GraphQElm.Helpers exposing (..)
 import Json.Decode exposing (Decoder)
 import Http exposing (get, post, Request, emptyBody)
 
 
-{-| GraphQElm exposes a simple Elm API for composing GraphQL queries and making requests to a GraphQL endpoint.
+{-| Query type used to define a GraphQElm query.
 
-# Defining and Composing Queries
-@docs gql, concatQueries, nest
+    import GraphQElm exposing (Query)
 
-# Making Requests
-@docs get, post, concatGQLUrl
-
+    query : Query
+    query =
+        {resource = "products"
+        , fields = ["name", "price"]
+        , args = []
+        , alias = ""
+        }
 -}
 type alias Query =
     { resource : String
@@ -35,8 +48,6 @@ type alias Query =
         }
 
     gql query == "steveJobs: users(email: "steve@apple.com"){name, age, city}"
-
-
 -}
 gql : Query -> String
 gql query =
