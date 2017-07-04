@@ -59,11 +59,6 @@ init =
 
 model : Model
 model =
-    clearModel
-
-
-clearModel : Model
-clearModel =
     { user = { email = "", name = "" }
     , error = ""
     , gqlEndpoint = "http://localhost:4000/graphql"
@@ -120,10 +115,10 @@ update m model =
             )
 
         GQLResponse (Ok user) ->
-            ( { clearModel | user = user }, Cmd.none )
+            ( { model | user = user, error = "" }, Cmd.none )
 
         GQLResponse (Err err) ->
-            ( { clearModel | error = toString err }, Cmd.none )
+            ( { model | error = toString err }, Cmd.none )
 
         UpdateEmail email ->
             let
@@ -146,7 +141,7 @@ update m model =
                 ( newModel, Cmd.none )
 
         UpdateView view ->
-            ( { clearModel | view = view }, Cmd.none )
+            ( { model | view = view, form = { name = "", email = "" } }, Cmd.none )
 
 
 view : Model -> Html Msg
