@@ -7,12 +7,8 @@ import Http exposing (get, post, Request, emptyBody)
 
 {-| GraphQElm exposes a simple elm API for composing GraphQL queries and making requests to a GraphQL endpoint.
 
-
-# Definition
-@docs Query
-
-# Composing Queries
-@docs concatQueries, nest
+# Defining and Composing Queries
+@docs gql, concatQueries, nest
 
 # Making Requests
 @docs get, post, concatGQLUrl
@@ -48,7 +44,6 @@ gql query =
 
 
 {-| Concatenates non-nested queries, allowing for multiple top-level queries.
-
 
     import GraphQElm exposing (Query, gql, concatQueries)
 
