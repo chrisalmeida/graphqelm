@@ -4,7 +4,9 @@ GraphQElm exposes a simple Elm API for composing GraphQL queries and making requ
 
 ## Getting Started
 
+```
 elm-package install chrisalmeida/graphqelm
+```
 
 ### Prerequisites
 
