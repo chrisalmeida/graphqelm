@@ -141,7 +141,7 @@ update m model =
                 ( newModel, Cmd.none )
 
         UpdateView view ->
-            ( { model | view = view, form = { name = "", email = "" } }, Cmd.none )
+            ( { model | view = view, error = "", form = { name = "", email = "" } }, Cmd.none )
 
 
 view : Model -> Html Msg
