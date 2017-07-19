@@ -2,10 +2,14 @@ module GraphQElm exposing (gql, concatQueries, nest, get, mutate, concatGQLUrl, 
 
 {-| GraphQElm exposes a simple Elm API for composing GraphQL queries and making requests to a GraphQL endpoint.
 
+
 # Defining and Composing Queries
+
 @docs Query, gql, concatQueries, nest
 
+
 # Making Requests
+
 @docs get, mutate, concatGQLUrl
 
 -}
@@ -21,11 +25,12 @@ import Http exposing (get, post, Request, emptyBody)
 
     query : Query
     query =
-        {resource = "products"
-        , fields = ["name", "price"]
+        { resource = "products"
+        , fields = [ "name", "price" ]
         , args = []
         , alias = ""
         }
+
 -}
 type alias Query =
     { resource : String
@@ -47,7 +52,8 @@ type alias Query =
         , alias = "steveJobs"
         }
 
-    gql query == "steveJobs: user(email: "steve@apple.com"){name, age, city}"
+    gql query == "steveJobs: users(email: "steve@apple.com"){name, age, city}"
+
 -}
 gql : Query -> String
 gql query =
@@ -75,6 +81,7 @@ gql query =
         }
 
     concatQueries [(gql query1), (gql query2)] == "users{name, age, city}, boards{title, created_at}"
+
 -}
 concatQueries : List String -> String
 concatQueries queries =
@@ -137,6 +144,7 @@ concatQueries queries =
 
     usersBoards =
         gql usersQuery
+
 -}
 nest : String -> String -> String
 nest a b =
@@ -171,6 +179,7 @@ nest a b =
             QueryGQL query ->
                 ( model, Http.send (\res -> GQLResponse res) (get model.serverBaseUrl query userDecoder) )
     ...
+
 -}
 get : String -> String -> Decoder a -> Http.Request a
 get url query d =
@@ -203,6 +212,7 @@ get url query d =
             QueryGQL query ->
                 ( model, Http.send (\res -> GQLResponse res) (mutate model.serverBaseUrl query userDecoder) )
     ...
+
 -}
 mutate : String -> String -> Decoder a -> Http.Request a
 mutate url query d =
@@ -253,6 +263,10 @@ parseQuery query =
 
                         valStr =
                             if isInt val then
+                                val
+                            else if String.startsWith "[" val then
+                                val
+                            else if String.startsWith "{" val then
                                 val
                             else
                                 "\"" ++ val ++ "\""
