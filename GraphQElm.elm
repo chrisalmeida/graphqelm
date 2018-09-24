@@ -52,7 +52,7 @@ type alias Query =
         , alias = "steveJobs"
         }
 
-    gql query == "steveJobs: users(email: "steve@apple.com"){name, age, city}"
+    gql query == "steveJobs: user(email: "steve@apple.com"){name, age, city}"
 
 -}
 gql : Query -> String
